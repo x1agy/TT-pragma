@@ -4,11 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { setUser, userSelector } from '@/store/slices/userSlice';
+import { emailRegexp } from '@/utils';
 
 import styles from './LoginPage.module.scss';
-
-const emailRegexp =
-  /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
 
 const LoginPage = () => {
   const [messageApi, context] = message.useMessage();
@@ -34,7 +32,7 @@ const LoginPage = () => {
       dispatch(setUser({ ...values, role: 'user' }));
       success();
     } else if (email === 'admin@admin.com' && password === '67890') {
-      setUser({ ...values, role: 'admin' });
+      dispatch(setUser({ ...values, role: 'admin' }));
       success();
     } else {
       error();

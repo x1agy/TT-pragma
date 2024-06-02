@@ -24,16 +24,20 @@ const tasks =
     status: item === 1,
   }));
 
-const initialState: TasksInitialState = { tasks: tasks.concat(tasks) };
+const initialState: TasksInitialState = { tasks: tasks };
 
 const tasksSlice = createSlice({
   name: 'tasksSlice',
   initialState,
   reducers: {
-    addTask: (state, action: PayloadAction<Omit<TasksType, 'id'>>) => {
+    addTask: (
+      state,
+      action: PayloadAction<Omit<TasksType, 'id' | 'status'>>,
+    ) => {
       state.tasks?.push({
         ...action.payload,
-        id: state.tasks[state.tasks.length - 1].id++,
+        id: state.tasks[state.tasks.length - 1].id + 1,
+        status: false,
       });
       localStorage.setItem('tasks', JSON.stringify(state.tasks));
     },
@@ -58,7 +62,7 @@ const tasksSlice = createSlice({
 
 const { actions, reducer } = tasksSlice;
 
-export const { addTask } = actions;
+export const { addTask, deleteTask, editTask } = actions;
 export default reducer;
 
 export const tasksSelector = (state: RootState) => state.tasksData;

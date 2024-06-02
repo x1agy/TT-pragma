@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import type { InputRef, TableColumnType } from 'antd';
 import { Button, Input, Space } from 'antd';
@@ -7,7 +7,7 @@ import Highlighter from 'react-highlight-words';
 
 import { TasksType } from '../types/stateTypes';
 
-type TableFilterData = Omit<TasksType, 'status'> & { status: string };
+export type TableFilterData = Omit<TasksType, 'status'> & { status: string };
 
 type DataIndex = keyof TableFilterData;
 
@@ -122,7 +122,7 @@ const useFilterProps = () => {
       ),
   });
 
-  return [getColumnSearchProps];
+  return [useCallback(getColumnSearchProps, [searchText, searchedColumn])];
 };
 
 export { useFilterProps };

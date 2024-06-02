@@ -1,7 +1,12 @@
-.closed {
-  background-color: $text-positive;
-}
+.table {
+  width: 90%;
+  margin-top: 18px;
 
-.opened {
-  background-color: $text-negative;
+  &_closed {
+    background-color: $text-positive;
+  }
+
+  &_opened {
+    background-color: $text-negative;
+  }
 }
