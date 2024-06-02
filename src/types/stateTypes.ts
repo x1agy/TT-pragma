@@ -2,8 +2,8 @@ export type TasksType = {
   id: number;
   title: string;
   email: string;
-  description: string;
-  status: string;
+  description?: string;
+  status: boolean;
 };
 
 export type UserProfile = {
