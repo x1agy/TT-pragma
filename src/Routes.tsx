@@ -2,8 +2,12 @@ import { Suspense } from 'react';
 import { Button } from 'antd';
 import { createBrowserRouter, Link, Outlet } from 'react-router-dom';
 
+import { AppHeader } from '@/components';
+import { LoginPage, LogoutPage, TasksPage } from '@/pages';
+
 const SuspenseLayout = () => (
   <Suspense fallback={<div></div>}>
+    <AppHeader />
     <Outlet />
   </Suspense>
 );
@@ -31,6 +35,19 @@ export const router = createBrowserRouter([
       </div>
     ),
 
-    children: [],
+    children: [
+      {
+        index: true,
+        Component: LoginPage,
+      },
+      {
+        path: 'tasks',
+        Component: TasksPage,
+      },
+      {
+        path: 'logout',
+        Component: LogoutPage,
+      },
+    ],
   },
 ]);

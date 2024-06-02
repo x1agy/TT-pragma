@@ -10,12 +10,7 @@ export default defineConfig(({}) => {
       react(),
       eslintPlugin({
         cache: false,
-        include: [
-          './src/**/*.js',
-          './src/**/*.jsx',
-          './src/**/*.ts',
-          './src/**/*.tsx',
-        ],
+        include: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
       }),
     ],
     resolve: {
@@ -27,6 +22,13 @@ export default defineConfig(({}) => {
         utils: `${path.resolve(__dirname, './src/utils')}`,
         hooks: `${path.resolve(__dirname, './src/hooks')}`,
         $: `${path.resolve(__dirname, './src/assets')}`,
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import 'src/style/variables/index';`,
+        },
       },
     },
   };

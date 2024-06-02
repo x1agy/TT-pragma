@@ -1,0 +1,17 @@
+.header {
+  background-color: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .header_title {
+    color: $primary;
+  }
+
+  .authorizedUser {
+    &_role {
+      color: $primary;
+      margin: 0;
+    }
+  }
+}

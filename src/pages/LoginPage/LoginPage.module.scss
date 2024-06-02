@@ -1,0 +1,8 @@
+.loginFormHolder {
+  display: flex;
+  justify-content: center;
+
+  &_form {
+    width: 50%;
+  }
+}

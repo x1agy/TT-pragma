@@ -12,24 +12,17 @@ module.exports = {
     project: true,
     tsconfigRootDir: __dirname,
   },
+  overrides: [
+    {
+      extends: ['plugin:@typescript-eslint/disable-type-checked'],
+      files: ['./**/*.js'],
+    },
+  ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'prettier', 'simple-import-sort'],
   rules: {
     'no-shadow': 'warn',
-    'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
-    'react/no-unstable-nested-components': [
-      'warn',
-      {
-        allowAsProps: false,
-      },
-    ],
-    'react/jsx-no-useless-fragment': [
-      'warn',
-      {
-        allowExpressions: true,
-      },
-    ],
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {

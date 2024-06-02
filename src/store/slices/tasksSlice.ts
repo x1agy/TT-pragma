@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { RootState } from '../';
 import { TasksType } from '@/types/stateTypes';
+
+import { RootState } from '../';
 
 interface UserInitialState {
   tasks: TasksType[] | null;
@@ -13,8 +14,8 @@ const tasksSlice = createSlice({
   name: 'tasksSlice',
   initialState,
   reducers: {
-    addTask: (state, action: PayloadAction<TasksType>) => {
-      state.tasks?.push(action.payload);
+    addTask: (state, action: PayloadAction<Omit<TasksType, 'id'>>) => {
+      state.tasks?.push({ ...action.payload, id: state.tasks[state.tasks.length - 1].id++ });
     },
     deleteTask: (state, action: PayloadAction<TasksType['id']>) => {
       state.tasks = state.tasks?.filter((task) => task.id !== action.payload) ?? state.tasks;
